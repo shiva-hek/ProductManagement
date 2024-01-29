@@ -36,8 +36,8 @@ namespace ProductManagement.UnitTests.Domain.Products
             var creator = new User();
 
             // Act
-            var product1 = new Product(productId, name, produceDate, manufacturePhone, manufactureEmail1, isAvailable, creatorId, creator, _productUniquenessCheckerMock.Object);
-            var product2 = new Product(productId, name, produceDate, manufacturePhone, manufactureEmail2, isAvailable, creatorId, creator, _productUniquenessCheckerMock.Object);
+            var product1 = new Product(productId, name, produceDate, manufacturePhone, manufactureEmail1, isAvailable, creatorId, _productUniquenessCheckerMock.Object);
+            var product2 = new Product(productId, name, produceDate, manufacturePhone, manufactureEmail2, isAvailable, creatorId, _productUniquenessCheckerMock.Object);
 
             // Assert
             Assert.True(product1.Equals(product2));
@@ -59,7 +59,7 @@ namespace ProductManagement.UnitTests.Domain.Products
             var creator = new User();
 
             // Act
-            var product = new Product(productId, name, produceDate, manufacturePhone, manufactureEmail, isAvailable, creatorId, creator, _productUniquenessCheckerMock.Object);
+            var product = new Product(productId, name, produceDate, manufacturePhone, manufactureEmail, isAvailable, creatorId, _productUniquenessCheckerMock.Object);
 
             // Assert
             Assert.NotNull(product);
@@ -70,7 +70,6 @@ namespace ProductManagement.UnitTests.Domain.Products
             Assert.Equal(manufactureEmail, product.ManufactureEmail);
             Assert.Equal(isAvailable, product.IsAvailable);
             Assert.Equal(creatorId, product.CreatorId);
-            Assert.Equal(creator, product.Creator);
         }
 
         [Fact]
@@ -84,12 +83,13 @@ namespace ProductManagement.UnitTests.Domain.Products
             var isAvailable = true;
             var creatorId = "creator123";
             var creator = new User();
+            CancellationToken cancellationToken = default;
 
-            _productRepositoryMock.Setup(repo => repo.Get(produceDate, manufactureEmail))
-                                   .ReturnsAsync(new Product(Guid.NewGuid(), name, produceDate, manufacturePhone, manufactureEmail, isAvailable, creatorId, creator, _productUniquenessCheckerMock.Object));
+            _productRepositoryMock.Setup(repo => repo.GetAsync(produceDate, manufactureEmail, cancellationToken))
+                                   .ReturnsAsync(new Product(Guid.NewGuid(), name, produceDate, manufacturePhone, manufactureEmail, isAvailable, creatorId, _productUniquenessCheckerMock.Object));
 
             // Act & Assert
-            Assert.Throws<BusinessRuleViolationException>(() => new Product(productId, name, produceDate, manufacturePhone, manufactureEmail, isAvailable, creatorId, creator, new ProductUniquenessChecker(_productRepositoryMock.Object)));
+            Assert.Throws<BusinessRuleViolationException>(() => new Product(productId, name, produceDate, manufacturePhone, manufactureEmail, isAvailable, creatorId, new ProductUniquenessChecker(_productRepositoryMock.Object)));
         }
 
         [Fact]
@@ -107,11 +107,11 @@ namespace ProductManagement.UnitTests.Domain.Products
             var isAvailable = true;
             var creatorId = "creator123";
             var creator = new User();
+            CancellationToken cancellationToken = default;
+            var product = new Product(productId, name, initialProduceDate, manufacturePhone, initialManufactureEmail, isAvailable, creatorId, _productUniquenessCheckerMock.Object);
 
-            var product = new Product(productId, name, initialProduceDate, manufacturePhone, initialManufactureEmail, isAvailable, creatorId, creator, _productUniquenessCheckerMock.Object);
-
-            _productRepositoryMock.Setup(repo => repo.Get(newProduceDate, newManufactureEmail))
-                                   .ReturnsAsync(new Product(Guid.NewGuid(), name, newProduceDate, manufacturePhone, newManufactureEmail, isAvailable, creatorId, creator, _productUniquenessCheckerMock.Object));
+            _productRepositoryMock.Setup(repo => repo.GetAsync(newProduceDate, newManufactureEmail, cancellationToken))
+                                   .ReturnsAsync(new Product(Guid.NewGuid(), name, newProduceDate, manufacturePhone, newManufactureEmail, isAvailable, creatorId, _productUniquenessCheckerMock.Object));
 
             // Act & Assert
             Assert.Throws<BusinessRuleViolationException>(()

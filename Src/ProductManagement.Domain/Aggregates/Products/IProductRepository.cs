@@ -5,6 +5,7 @@ namespace ProductManagement.Domain.Aggregates.Products
 {
     public interface IProductRepository : IRepository<Product>
     {
-        Task<Product> Get(ProduceDate produceDate , ManufactureEmail manufactureEmail);
+        Task<Product> GetAsync(ProduceDate produceDate , ManufactureEmail manufactureEmail, CancellationToken cancellationToken = default);
+        Task<List<Product>> GetAllAsync(string name = null, CancellationToken cancellationToken = default);
     }
 }

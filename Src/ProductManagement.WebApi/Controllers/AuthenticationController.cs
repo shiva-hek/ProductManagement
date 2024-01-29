@@ -1,11 +1,9 @@
-﻿using Azure.Core;
-using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using ProductManagement.Application.Accounts.Commands.Login;
 using ProductManagement.Application.Accounts.Commands.Register;
 using ProductManagement.Application.Accounts.Commands.Token;
+using ProductManagement.WebApi.ActionFilters;
 
 namespace ProductManagement.WebApi.Controllers
 {
@@ -21,7 +19,7 @@ namespace ProductManagement.WebApi.Controllers
         }
 
         [HttpPost("register")]
-        //[ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> RegisterUser([FromBody] RegisterCommandRequest registerCommandRequest)
         {
             //var result = await _authenticationService.RegisterUser(userForRegistration);
@@ -40,7 +38,7 @@ namespace ProductManagement.WebApi.Controllers
         }
 
         [HttpPost("login")]
-        //[ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> Authenticate([FromBody] LoginCommangHandlerRequest loginCommangHandlerRequest)
         {
             LoginCommangHandlerResponse result = await _mediator.Send(loginCommangHandlerRequest);

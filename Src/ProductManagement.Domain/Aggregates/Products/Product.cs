@@ -26,7 +26,6 @@ namespace ProductManagement.Domain.Aggregates.Products
             ManufactureEmail manufactureEmail,
             bool isAvailable,
             string creatorId,
-            User creator,
             IProductUniquenessChecker productUniquenessChecker)
         {
             AssertionConcern.AssertArgumentNotNull(name, $"The {nameof(name)} must be provided.");
@@ -43,7 +42,6 @@ namespace ProductManagement.Domain.Aggregates.Products
             ManufactureEmail = manufactureEmail;
             IsAvailable = isAvailable;
             CreatorId = creatorId;
-            Creator = creator;
         }
 
         public void SetProduceDateAndManufactureEmail(DateTime produceDate,string manufactureEmail, IProductUniquenessChecker productUniquenessChecker)
@@ -58,6 +56,13 @@ namespace ProductManagement.Domain.Aggregates.Products
 
             ProduceDate = newProduceDate;
             ManufactureEmail = newManufactureEmail;
+        }
+
+        public void SetProductInfo(string name, string manufacturePhone, bool isAvailable)
+        {
+            Name=new Name(name);
+            ManufacturePhone = new ManufacturePhone(manufacturePhone);
+            IsAvailable = isAvailable;
         }
     }
 }

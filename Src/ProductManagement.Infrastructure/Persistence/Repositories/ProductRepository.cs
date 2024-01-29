@@ -13,24 +13,24 @@ namespace ProductManagement.Infrastructure.Persistence.Repositories
             _context = context;
         }
 
-        public async Task<Product> Get(ProduceDate produceDate, ManufactureEmail manufactureEmail)
+        public async Task<Product> GetAsync(ProduceDate produceDate, ManufactureEmail manufactureEmail, CancellationToken cancellationToken = default)
         {
             return await _context.Products
-                .FirstOrDefaultAsync(p => p.ProduceDate == produceDate && p.ManufactureEmail == manufactureEmail);
+                .FirstOrDefaultAsync(p => p.ProduceDate.Value == produceDate.Value && p.ManufactureEmail.Value == manufactureEmail.Value);
         }
 
-        public async Task<Product> GetAsync(Guid id)
+        public async Task<Product> GetAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            return await _context.Products.FindAsync(id);
+            return await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task InsertAsync(Product entity)
+        public async Task InsertAsync(Product entity, CancellationToken cancellationToken = default)
         {
             await _context.Products.AddAsync(entity);
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoveAsync(Guid id)
+        public async Task RemoveAsync(Guid id, CancellationToken cancellationToken = default)
         {
             var product = await _context.Products.FindAsync(id);
             if (product != null)
@@ -40,10 +40,22 @@ namespace ProductManagement.Infrastructure.Persistence.Repositories
             }
         }
 
-        public async Task UpdateAsync(Product entity)
+        public async Task UpdateAsync(Product entity, CancellationToken cancellationToken = default)
         {
             _context.Products.Update(entity);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Product>> GetAllAsync(string name = null, CancellationToken cancellationToken = default)
+        {
+            IQueryable<Product> query = _context.Products.Include(p => p.Creator);
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(p => p.Creator.FirstName.Contains(name) || p.Creator.LastName.Contains(name));
+            }
+
+            return await query.ToListAsync();
         }
     }
 

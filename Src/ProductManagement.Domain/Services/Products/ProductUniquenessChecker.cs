@@ -14,7 +14,8 @@ namespace ProductManagement.Domain.Services.Products
 
         public bool IsUnique(ProduceDate produceDate, ManufactureEmail manufactureEmail)
         {
-            return _productRepository.Get(produceDate, manufactureEmail) == null;
+            var product = _productRepository.GetAsync(produceDate, manufactureEmail);
+            return product.Result == null;
         }
     }
 }

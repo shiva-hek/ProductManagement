@@ -5,7 +5,7 @@ using ProductManagement.Domain.Aggregates.Accounts;
 
 namespace ProductManagement.Application.Mapping
 {
-    internal class UserProfile : Profile
+    public class UserProfile : Profile
     {
         public UserProfile()
         {

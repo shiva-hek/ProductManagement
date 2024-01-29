@@ -19,8 +19,7 @@ namespace ProductManagement.Domain.Aggregates.Products.Factories
             string manufacturePhone,
             string manufactureEmail,
             bool isAvailable,
-            string creatorId,
-            User creator)
+            string creatorId)
         {
             var id = Guid.NewGuid();
             var productName = new Name(name);
@@ -36,7 +35,6 @@ namespace ProductManagement.Domain.Aggregates.Products.Factories
                 productManufactureEmail,
                 isAvailable,
                 creatorId,
-                creator,
                 _productUniquenessChecker);
         }
     }
