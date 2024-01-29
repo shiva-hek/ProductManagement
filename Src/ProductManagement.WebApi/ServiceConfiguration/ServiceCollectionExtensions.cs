@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using ProductManagement.Domain.Aggregates.Accounts;
 using ProductManagement.Infrastructure.Persistence;
@@ -51,9 +52,13 @@ namespace ProductManagement.WebApi.ServiceConfiguration
             });
         }
 
-        public static IServiceCollection AddApiServices(this IServiceCollection services)
+        public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<ValidationFilterAttribute>();
+
+            services.AddDbContext<ProductDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("ProductConnection")));
+
             return services;
         }
     }

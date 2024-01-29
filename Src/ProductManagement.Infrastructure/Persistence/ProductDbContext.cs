@@ -19,9 +19,6 @@ namespace ProductManagement.Infrastructure.Persistence
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProductDbContext).Assembly);
             //modelBuilder.ApplyConfiguration(new ProductConfiguration());
             base.OnModelCreating(modelBuilder);
-           // modelBuilder.SeedProducts();
-           // modelBuilder.SeedUsers();
-            modelBuilder.SeedRoles();
         }
     }
 }
