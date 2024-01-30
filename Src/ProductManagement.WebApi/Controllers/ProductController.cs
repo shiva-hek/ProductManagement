@@ -13,7 +13,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ProductManagement.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("products")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -25,7 +25,7 @@ namespace ProductManagement.WebApi.Controllers
         }
 
         [Authorize]
-        [HttpPost("createProduct")]
+        [HttpPost("create-product")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> Create(CreateProductCommandRequest createProductCommandRequest)
         {
@@ -42,7 +42,7 @@ namespace ProductManagement.WebApi.Controllers
         }
 
         [Authorize]
-        [HttpPost("updateProduct")]
+        [HttpPost("update-product")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> Update(UpdateProductCommandRequest updateProductCommandRequest)
         {

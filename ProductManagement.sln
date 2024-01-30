@@ -7,19 +7,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{81616EAF-81A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{288F3B09-D7A8-4401-AA8E-0597F3011D3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.Application", "Src\ProductManagement.Application\ProductManagement.Application.csproj", "{2B082598-B61C-41E8-8119-723648765B70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.Application", "Src\ProductManagement.Application\ProductManagement.Application.csproj", "{2B082598-B61C-41E8-8119-723648765B70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.Domain", "Src\ProductManagement.Domain\ProductManagement.Domain.csproj", "{228281E8-041B-45E7-B382-21B4F28AA0C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.Domain", "Src\ProductManagement.Domain\ProductManagement.Domain.csproj", "{228281E8-041B-45E7-B382-21B4F28AA0C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.WebApi", "Src\ProductManagement.WebApi\ProductManagement.WebApi.csproj", "{F85CA371-6569-4356-94DB-95CE63B1233D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.WebApi", "Src\ProductManagement.WebApi\ProductManagement.WebApi.csproj", "{F85CA371-6569-4356-94DB-95CE63B1233D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.UnitTests", "Tests\ProductManagement.UnitTests\ProductManagement.UnitTests.csproj", "{14DC7418-2F4A-4B92-AE6E-DE8FDBB36431}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.UnitTests", "Tests\ProductManagement.UnitTests\ProductManagement.UnitTests.csproj", "{14DC7418-2F4A-4B92-AE6E-DE8FDBB36431}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.AccptanceTests", "Tests\ProductManagement.AccptanceTests\ProductManagement.AccptanceTests.csproj", "{36A9DC5F-A1CA-4656-91CC-DCFCC1482B37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.AccptanceTests", "Tests\ProductManagement.AccptanceTests\ProductManagement.AccptanceTests.csproj", "{36A9DC5F-A1CA-4656-91CC-DCFCC1482B37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.IntegrationTests", "Tests\ProductManagement.IntegrationTests\ProductManagement.IntegrationTests.csproj", "{5AFA3C10-F491-4432-9244-1768D0D04170}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.Infrastructure", "Src\ProductManagement.Infrastructure\ProductManagement.Infrastructure.csproj", "{6D2A90D1-7E1A-440B-8DA5-C858E0FCB99B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.Infrastructure", "Src\ProductManagement.Infrastructure\ProductManagement.Infrastructure.csproj", "{6D2A90D1-7E1A-440B-8DA5-C858E0FCB99B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +45,6 @@ Global
 		{36A9DC5F-A1CA-4656-91CC-DCFCC1482B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36A9DC5F-A1CA-4656-91CC-DCFCC1482B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36A9DC5F-A1CA-4656-91CC-DCFCC1482B37}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5AFA3C10-F491-4432-9244-1768D0D04170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AFA3C10-F491-4432-9244-1768D0D04170}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AFA3C10-F491-4432-9244-1768D0D04170}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AFA3C10-F491-4432-9244-1768D0D04170}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6D2A90D1-7E1A-440B-8DA5-C858E0FCB99B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6D2A90D1-7E1A-440B-8DA5-C858E0FCB99B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D2A90D1-7E1A-440B-8DA5-C858E0FCB99B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -65,7 +59,6 @@ Global
 		{F85CA371-6569-4356-94DB-95CE63B1233D} = {81616EAF-81A5-4312-BFC7-BA3BC763B141}
 		{14DC7418-2F4A-4B92-AE6E-DE8FDBB36431} = {288F3B09-D7A8-4401-AA8E-0597F3011D3A}
 		{36A9DC5F-A1CA-4656-91CC-DCFCC1482B37} = {288F3B09-D7A8-4401-AA8E-0597F3011D3A}
-		{5AFA3C10-F491-4432-9244-1768D0D04170} = {288F3B09-D7A8-4401-AA8E-0597F3011D3A}
 		{6D2A90D1-7E1A-440B-8DA5-C858E0FCB99B} = {81616EAF-81A5-4312-BFC7-BA3BC763B141}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

@@ -15,9 +15,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddAuthentication();
 builder.Services.ConfigureIdentity();
-
-builder.Services.AddDomainServices().AddRepositories().AddApplicationServices().AddApiServices(builder.Configuration);
 builder.Services.ConfigureJWT(builder.Configuration);
+builder.Services.AddDomainServices().AddRepositories().AddApplicationServices().AddApiServices(builder.Configuration);
+
 
 builder.Services.AddSwaggerGen(opt =>
 {
@@ -54,7 +54,11 @@ var app = builder.Build();
 using (var serviceScope = app.Services.CreateScope())
 {
     var dbContext = serviceScope.ServiceProvider.GetService<ProductDbContext>();
-    dbContext.Database.Migrate();
+
+    if (dbContext.Database.IsRelational())
+    {
+        dbContext.Database.Migrate();
+    }
 }
 
 // Configure the HTTP request pipeline.
